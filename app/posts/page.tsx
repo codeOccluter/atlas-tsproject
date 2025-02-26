@@ -1,7 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+<<<<<<< HEAD
 import "@/css/posts/index.css"
+=======
+import "@/css/posts/page.css"
+>>>>>>> 66d2b0d (2 번째, commit (auth, jwt, cookies 등) 인증 적용)
 
 type Post = {
     _id: string,
