@@ -10,7 +10,7 @@ export function middleware(req: NextRequest) {
     }
 
     if(!token) {
-        return NextResponse.redirect(new URL('/login', req.url))
+        return NextResponse.redirect(new URL('/auth/login', req.url))
     }
 
     try {
@@ -22,7 +22,7 @@ export function middleware(req: NextRequest) {
     }catch(err){
 
         console.error(`Invalid token: ${err}`)
-        return NextResponse.redirect(new URL('/login', req.url))
+        return NextResponse.redirect(new URL('/auth/login', req.url))
     }
 }
 

@@ -1,0 +1,126 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.register-box {
+    width: 400px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.register-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.register-subtitle {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-input {
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px;
+    /* margin-bottom: 10px; */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    transition: border-color 0.3s;
+}
+
+.register-input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: white; /* 아이콘 색상 */
+    pointer-events: none;
+}
+
+.birth-text {
+    position: absolute;
+    top: 50%;
+    left: 35px;        /* 아이콘 오른쪽 35px 정도 떨어진 위치 */
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+    font-size: 0.9rem; /* 필요에 따라 조정 */
+  }
+  
+
+.error-message {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.register-input::placeholder {
+    color: #dbeafe;
+}
+
+.date-picker::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.register-button:hover {
+    background: #1e40af;
+}
+
+.register-login-text {
+    margin-top: 1rem;
+    color: white;
+}
+
+.register-login-link {
+    color: #facc15;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-login-link:hover {
+    text-decoration: underline;
+}

@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import "@/css/login/page.css"
+import "@/css/app/auth/login.css"
 
 export default function Login() {
 

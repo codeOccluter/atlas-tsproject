@@ -2,15 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
     height: 100vh;
-    background-color: #f3f4f6;
+    background-color: rgba(30, 58, 138, 0.9);
 }
 
 .login-box {
-    width: 400px;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem;
     background-color: white;
-    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -33,7 +33,7 @@
 .login-btn {
     width: 100%;
     padding: 10px;
-    background-color: #4f46e5;
+    background-color: #353268;
     color: white;
     border: none;
     border-radius: 5px;
@@ -55,7 +55,7 @@
 .link-btn {
     background: none;
     border: none;
-    color: #4f46e5;
+    color: #2586a3;
     font-size: 0.9rem;
     cursor: pointer;
 }
