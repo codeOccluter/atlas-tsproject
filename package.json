@@ -9,14 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "dotenv": "^16.4.7",
-=======
     "bcryptjs": "^3.0.2",
     "cookies-next": "^5.1.0",
-    "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
->>>>>>> 66d2b0d (2 번째, commit (auth, jwt, cookies 등) 인증 적용)
     "mongoose": "^8.10.1",
     "next": "15.1.7",
     "react": "^19.0.0",
