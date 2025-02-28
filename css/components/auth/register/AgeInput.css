@@ -1,0 +1,40 @@
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+  
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #333; /* 필요하면 색 변경 */
+    pointer-events: none; /* 아이콘 클릭해도 인풋 포커스 되도록 */
+    font-size: 1.2rem; /* 필요 시 조정 */
+}
+  
+.register-input {
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px; /* 아이콘 자리 확보 */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s;
+}
+  
+.register-input:focus {
+    border-color: #007aff; /* 포커스 시 파란 테두리 */
+    outline: none;
+}
+  
+.error-message {
+    color: #d93025;
+    font-size: 0.85rem;
+    margin-top: 5px; /* 인풋과 좀 겹쳐보이면 조정 */
+    text-align: left; /* 왼쪽 정렬 */
+}
+  
