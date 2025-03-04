@@ -1,166 +1,36 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import "@/css/app/auth/register.css"
 import { FaEnvelope, FaUser, FaLock, FaShieldAlt } from "react-icons/fa"
-
 import AgeInput from "@/components/auth/register/AgeInput"
+import { useRegisterForm } from "@/hooks/auth/register/useRegisterForm"
 
 const Register = () => {
 
-    const router = useRouter()
+    const {
+        //상태
+        form,
+        error,
+        ageError,
+        passwordError,
+        confirmPasswordError,
+        emailError,
+        showEmailAuthButton,
+        showVerificationInput,
+        verificationCode,
 
-    const [form, setForm] = useState({
-        email: "",
-        name: "",
-        password: "",
-        confirmPassword: "",
-        age: "",
-        bio: "",
-        posts: []
-    })
-
-    const [error, setError] = useState("")
-    const [ageError, setAgeError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [confirmPasswordError, setConfirmPasswordError] = useState("")
-    const [emailError, setEmailError] = useState("")
-
-    const [showEmailAuthButton, setShowEmailAuthButton] = useState(false)
-    const [showVerificationInput, setShowVerificationInput] = useState(false)
-    
-    const [verificationCode, setVerificationCode] = useState("")
-
-    const passwordRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/
-    const emailRegex = /^[^\s@]+@[^\s@]+[^\s@]+$/
-
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        const value = e.target.value
-        setForm({ ...form, email: value })
-
-        if(!value) {
-            
-            setEmailError("")
-            setShowEmailAuthButton(false)
-            return
-        }
-
-        if(!emailRegex.test(value)) {
-
-            setEmailError("올바른 이메일 형식이 아닙니다.")
-            setShowEmailAuthButton(false)
-        }else {
-            setEmailError("")
-            setShowEmailAuthButton(true)
-        }
-    }
-
-    const handleEmailAuthClick = () => {
-        // TODO 이메일 인증 로직
-        
-        setShowVerificationInput(true)
-    }
-
-    const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setVerificationCode(e.target.value)
-    }
-
-    const handleVerifyCode = () => {
-        // TODO 실제 인증번호 검증 로직 생략 (백엔드 통신 필요)
-
-        alert(`입력한 인증 코드: ${verificationCode}`)
-    }
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
-    }
-
-    const handleAgeChange = (value: string) => {
-       
-        setForm({ ...form, age: value })
-    }
-
-    const handleAgeBlur = () => {
-
-        if(form.age.length === 8) {
-
-            const year = form.age.slice(0, 4)
-            const month = form.age.slice(4, 6)
-            const day = form.age.slice(6, 8)
-
-            setForm({ ...form, age: `${year}.${month}.${day}` })
-            setAgeError("")
-        }else if(form.age.length !== 0) {
-            setAgeError(`유효하지 않은 생년월일입니다.`)
-        }
-    }
-
-    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        const value = e.target.value
-        setForm({ ...form, password: value })
-
-        if(value.length === 0) {
-            setPasswordError("")
-            return
-        }
-
-        if(!passwordRegex.test(value)) {
-            setPasswordError("비밀번호는 8~16자, 영소문자/숫자/특수문자를 모두 포함해야 합니다.")
-        }else {
-            setPasswordError("")
-        }
-
-        if(form.confirmPassword && form.confirmPassword !== value) {
-            setConfirmPasswordError("비밀번호가 일치하지 않습니다.")
-        }else {
-            setConfirmPasswordError("")
-        }
-    }
-
-    const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
-        const value = e.target.value
-        setForm({ ...form, confirmPassword: value })
-
-        if(value !== form.password) {
-            setConfirmPasswordError("비밀번호가 일치하지 않습니다.")
-        }else {
-            setConfirmPasswordError("")
-        }
-    }
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setError("")
-        setAgeError("")
-
-        if(form.password !== form.confirmPassword) {
-            
-            setError(`비밀번호가 일치하지 않습니다.`)
-            return
-        }
-
-        try {
-
-            const result = await fetch(`/api/auth/register`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form)
-            })
-            const data = await result.json()
-
-            if(!result.ok) throw new Error(data.message)
-
-            alert("회원가입이 완료 되었습니다.")
-            router.push("/auth/login")
-        }catch(err: any){
-            setError(err.message)
-        }
-    }
+        // 핸들러
+        handleChange,
+        handleEmailChange,
+        handleEmailAuthClick,
+        handleVerificationCodeChange,
+        handleVerifyCode,
+        handleAgeChange,
+        handlePasswordChange,
+        handleConfirmPasswordChange,
+        handleSubmit
+    } = useRegisterForm()
 
     return (
         <div className="register-container">
@@ -175,7 +45,7 @@ const Register = () => {
                             type="text" 
                             className="register-input"
                             placeholder="Name"
-                            name="이름" 
+                            name="name" 
                             value={form.name} 
                             onChange={handleChange} 
                             required/>
@@ -184,7 +54,7 @@ const Register = () => {
                     <div className="input-group">
                         <FaEnvelope className="input-icon"/>
                         <input 
-                            type="이메일" 
+                            type="email" 
                             className="register-input"
                             placeholder="E-mail"
                             name="email" 
@@ -243,7 +113,7 @@ const Register = () => {
                     </div>
                     {confirmPasswordError && <p className="error-message">{confirmPasswordError}</p>}
 
-                    <div className="input-group">
+                    <div>
                         <AgeInput 
                             value={form.age}
                             onChange={handleAgeChange}
@@ -255,6 +125,7 @@ const Register = () => {
                     <button 
                         type="submit"
                         className="register-button"
+                        // TODO onClick 시 서버 전송 및 라우팅
                     >가입하기</button>
                 </form>
 

@@ -38,7 +38,6 @@
 .register-input {
     width: 100%;
     padding: 12px 12px 12px 40px;
-    /* padding-left: 40px; */
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
@@ -70,11 +69,11 @@
 .birth-text {
     position: absolute;
     top: 50%;
-    left: 35px;        /* 아이콘 오른쪽 35px 정도 떨어진 위치 */
+    left: 35px;
     transform: translateY(-50%);
     color: white;
     pointer-events: none;
-    font-size: 0.9rem; /* 필요에 따라 조정 */
+    font-size: 0.9rem;
   }
 
 .register-input::placeholder {
@@ -134,7 +133,7 @@
     text-align: left;
     color: #e63946;
     font-weight: bold;
-    margin-top: -15px; /* 필요 시 조정, 인풋과 에러문 사이 간격 조절 */
+    margin-top: -15px;
     font-size: 0.8rem;
 }
 

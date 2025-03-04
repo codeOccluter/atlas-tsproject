@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import "@/css/app/auth/login.css"
 
 export default function Login() {
@@ -33,11 +34,11 @@ export default function Login() {
     return (
         <div className="login-container">
             <div className="login-box">
-                {/* <h2 className="login-title">로그인</h2> */}
+                <h2 className="login-title">로그인</h2>
                 <form onSubmit={handleLogin} className="login-form">
                     <input 
                         type="email"
-                        placeholder="Email"
+                        placeholder="E-mail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="input-field"
@@ -45,16 +46,18 @@ export default function Login() {
                     />
                     <input 
                         type="password"
-                        placeholder="PW"
+                        placeholder="비밀번호"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="input-field"
                         required
                     />
-                    <button type="submit" className="login-btn">Login</button>
+                    <button type="submit" className="login-btn">로그인</button>
                 </form>
                 <div className="login-links">
-                    <button className="link-btn">회원가입</button>
+                    <Link href="/auth/register">
+                        <button className="link-btn">회원가입</button>
+                    </Link>
                     <button className="link-btn">ID / PW 찾기</button>
                 </div>
                 <div className="social-login">
@@ -65,5 +68,4 @@ export default function Login() {
             </div>
         </div>
     )
-
 }
