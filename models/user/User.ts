@@ -26,4 +26,6 @@ const UserSchema = new Schema<IUser>(
 // posts: ObjectId[] → User가 작성한 Post를 저장할 배열
 // timestamps: true → createdAt, updatedAt 자동 관리
 
-export default mongoose.models.User || mongoose.model<IUser>("User", UserSchema)
+export default 
+    mongoose.models.User ||
+    mongoose.model<IUser>("User", UserSchema)
