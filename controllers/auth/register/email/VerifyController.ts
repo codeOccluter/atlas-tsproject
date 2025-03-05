@@ -3,8 +3,9 @@ import { randomVerificationCode } from "@/utils/auth/register/randomGenerator"
 import EmailVerifyCode from "@/models/EmailVerifyCode/EmailVerifyCode"
 
 enum VerifyController {
-    NO_EMAIL = 0,
-    SEND_MAIL = 1
+    SEND_MAIL = 1,
+    NO_EMAIL = 5,
+    EXIST_EMAIL= 6,
 }
 
 export async function checkEmailAndSendCode(email: string): 
