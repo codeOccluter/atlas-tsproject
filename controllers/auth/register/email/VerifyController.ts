@@ -1,6 +1,8 @@
 import { transporter } from "@/utils/auth/register/mailer"
 import { randomVerificationCode } from "@/utils/auth/register/randomGenerator"
 import EmailVerifyCode from "@/models/EmailVerifyCode/EmailVerifyCode"
+import { VerifyTypes } from "./VerifyTypes"
+import { makeVerifyResult } from "./VerifyHelpers"
 
 enum VerifyController {
     SEND_MAIL = 1,
@@ -9,16 +11,15 @@ enum VerifyController {
 }
 
 export async function checkEmailAndSendCode(email: string): 
-    Promise<{ message: string, code: string, result: number }> {
-
-    const existEmail = await EmailVerifyCode.find({ email })
-
-    if(existEmail) {
-        return { message: `존재하지 않는 이메일입니다.`, code: "0", result: VerifyController.NO_EMAIL }
-    }
+    Promise<VerifyTypes> {
 
     if(!email) {
-        return { message: `존재하지 않는 이메일입니다.`, code: "0", result: VerifyController.NO_EMAIL }
+        return makeVerifyResult(`존재하지 않는 이메일 입니다.`, `0`, VerifyController.NO_EMAIL )
+    }
+
+    const existEmail = await EmailVerifyCode.find({ email })
+    if(existEmail) {
+        return makeVerifyResult(`이미 등록된 이메일입니다.`, `0`, VerifyController.EXIST_EMAIL)
     }
 
     const code = randomVerificationCode(6)
