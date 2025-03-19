@@ -1,17 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { checkEmailAndSendCode } from "@/controllers/auth/register/email/VerifyController";
+import { VerifyController } from "@/controllers/auth/register/email/VerifyController";
 import dbConnect from "@/lib/db/dbConnect"
+import { NextResponse } from "next/server";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET() {
 
+}
+
+export async function POST(request: Request) {
     await dbConnect()
 
-    if(req.method !== "POST") {
-        return res.status(405).json({ message: "Method Not Allowed" })
+    const { email } = await request.json()
+    const { message, code, result } = await VerifyController.checkEmailAndSendCode(email)
+
+    console.log(`message: ${message}, code: ${code}, result: ${result}`)
+
+    if(result !== 1) {
+
+        return NextResponse.json({ message: `테스트용 메시지` }, { status: 200 })
     }
 
-    const { email } = req.body
-    const { message, code, result } = await checkEmailAndSendCode(email)
-
-    
+    return NextResponse.json(message, { status: 201 })
 }
